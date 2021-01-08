@@ -1,0 +1,35 @@
+import java.util.Scanner;
+
+public class MissingNumber {
+
+	public static void main(String[] args) {
+		Scanner sc=new Scanner(System.in);
+		System.out.println("Enter the size of array : ");
+		int size=sc.nextInt();
+		int[] arr=new int[size];
+		int tot=0;
+		System.out.println("Enter the array Elements : ");
+		for(int i=0;i<size;i++){
+			arr[i]=sc.nextInt();
+			tot=tot+arr[i];
+		}
+		
+		//Approach 1
+		
+		int s=arr[0],e=arr[size-1];
+		for(int i=arr[0];i<=arr[size-1];i++){
+			System.out.println(">>"+i);
+			tot=tot-i;
+		}
+		System.out.println("Approach 1 missing Number is :"+Math.abs(tot));
+		
+		//Approach 2
+		
+		int last=arr[size-1];
+		int first=arr[0]-1;
+		last=(last*(last+1))/2;
+		first=(first*(first+1))/2;
+	    last=last-first;
+		System.out.println("Approach 2 missing Number is :"+(last-tot));
+		}
+}
