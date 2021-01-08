@@ -1,0 +1,80 @@
+import java.util.Scanner;
+public class ReversingVowels {
+	
+	public int isVowel(char a){
+		if(a=='a'||a=='e'||a=='i'||a=='o'||a=='u')
+			return 1;
+		else
+			return 0;
+	}
+	
+	public String myReverse(String str) {
+		int start=0,end=str.length()-1;
+		char[] cArr=str.toCharArray();
+		char temp;
+		while(start<end){
+			temp=cArr[start];
+			cArr[start]=cArr[end];
+			cArr[end]=temp;
+			start++;
+			end--;
+		}
+		return String.valueOf(cArr);
+	}
+	
+	public String myReverse1(String str) {
+		int start=0,end=str.length()-1;
+		char[] cArr=str.toCharArray();
+		char temp;
+		while(start<end){
+			while(isVowel(cArr[start])==0&&start<end){
+				++start;
+			}
+			while(isVowel(cArr[end])==0&&start<end){
+				--end;
+			}
+			if(isVowel(cArr[start])==1 && isVowel(cArr[end])==1){
+			    temp=cArr[start];
+				cArr[start]=cArr[end];
+				cArr[end]=temp;
+				++start;
+				--end;
+			}
+		}
+		str=String.valueOf(cArr);
+		return str;
+	}
+	
+	public String myReverse2(String str) {
+		int index=0,len=str.length();
+		char[] cArr=str.toCharArray();
+		String vowels="";
+		MyReverse rv=new MyReverse();
+		for(int i=0;i<len;i++){
+			if(cArr[i]=='a'||cArr[i]=='e'||cArr[i]=='i'||cArr[i]=='o'||cArr[i]=='u')
+			{
+				vowels=vowels+cArr[i];
+			}
+		}
+		vowels=rv.myReverse(vowels);
+		char[] vArr=vowels.toCharArray();
+		for(int i=0;i<len;i++){
+			if(cArr[i]=='a'||cArr[i]=='e'||cArr[i]=='i'||cArr[i]=='o'||cArr[i]=='u')
+			{
+				cArr[i]=vArr[index];
+				index++;
+			}
+		}
+		return String.valueOf(cArr);
+	}
+	
+	public static void main(String []args) {
+		ReversingVowels rv=new ReversingVowels();
+		Scanner sc=new Scanner(System.in);
+		System.out.println("Enter a String : ");
+		String str=sc.nextLine();
+	    System.out.println("Reversed vowels approach 1 = "+rv.myReverse1(str));
+	    System.out.println("Reversed vowels approach 2 = "+rv.myReverse2(str));
+	    sc.close();
+	}
+}
