@@ -1,0 +1,29 @@
+//Abstract Class
+
+public abstract class Phone {
+	public void call(){
+		System.out.println("Calling Harsih");
+	}
+	public void message(){
+		System.out.println("Texting");
+	}
+	public void music(){
+		System.out.println("Playing Songs");
+	}
+	public abstract void siri();
+}
+
+//Main class
+
+public class Iphone extends Phone {
+	public void siri() {
+		System.out.println("Hi i'm Siri");
+	}
+	public static void main(String[]srgs) {
+		Iphone ip=new Iphone();
+		ip.siri();
+		ip.call();
+		ip.music();
+		ip.message();
+	}
+}
