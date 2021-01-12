@@ -1,0 +1,74 @@
+//Bank Interface
+public interface Bank {
+	void withDrawl();
+	void savings();
+	void deposit();
+}
+
+
+//Implementation
+import java.util.Scanner;
+
+public class BankImp implements Bank{
+	
+	public boolean authentication() {
+		Scanner in=new Scanner("System.in");
+		System.out.println("ENTER THE PASSWORD");
+		String uName=in.nextLine();
+		System.out.println("ENTER THE PASSWORD");
+		String pwd=in.nextLine();
+		if(uName=="Harish"&&pwd=="123") {
+			return true;
+		}
+		return false;
+	}
+	
+	public void withDrawl() {
+		if(authentication()==true) {
+			System.out.println("Withrawed");
+		}
+		else {
+			System.out.println("Wrong Person");
+		}
+	}
+	
+	public void deposit() {	
+		if(authentication()==true) {
+			System.out.println("Deposited");
+		}
+		else {
+			System.out.println("Wrong Person");
+		}
+	}
+	
+	public void savings() {
+		if(authentication()==true) {
+			System.out.println("Savings");
+		}
+		else {
+			System.out.println("Wrong Person");
+		}
+	}
+	
+	public void bankDetails() {	
+		if(authentication()==true) {
+			System.out.println("Bank Details");
+		}
+		else {
+			System.out.println("Wrong Person");
+		}
+	}
+}
+
+//Main Class
+public class Main {
+	public static void main(String[] args) {
+		Bank b=new BankImp();
+		System.out.println("Deposited");
+		b.deposit();
+		b.savings();
+		b.withDrawl();
+	//	b.bankDetails();
+	}
+
+}
