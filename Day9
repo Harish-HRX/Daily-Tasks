@@ -1,0 +1,59 @@
+public class Calculator {
+	public int sum(int num1,int num2){
+		System.out.println("The sum is"+(num1+num2));
+		return num1+num2;
+	}
+	public static int sub(int num1,int num2){
+		System.out.println("The sum is"+(num1-num2));
+		return num1+num2;
+	}
+	public int mul(int num1,int num2){
+		System.out.println("The mul is"+(num1*num2));
+		return num1+num2;
+	}
+	public int div(int num1,int num2){
+		System.out.println("The div is"+(num1/num2));
+		return num1+num2;
+	}	
+}
+
+public class AdvanceCalculator extends Calculator{
+
+  //Method overloading
+	public int sum(int num1,int num2,int num3){
+		System.out.println("The sum is"+(num1+num2+num3));
+		return num1+num2+num3;
+	}
+	public int sum(int num1,int num2,int num3,int num4){
+		System.out.println("The sum is"+(num1+num2+num3+num4));
+		return num1+num2+num3+num4;
+	}
+	
+	//Method overriding
+		public int div(int num1,int num2){
+			System.out.println("The remainder is="+(num1%num2));
+			System.out.println("The Quotient is="+(num1/num2));
+			return num1/num2;
+		}
+	
+	//Method Hiding
+	public static int sub(int num1,int num2){
+		System.out.println("sub="+(num1-num2));
+		return num1-num2;
+	}
+	public int mul(int num1,int num2){
+		return num1*num2;
+	}
+}
+
+public class Main {
+	public static void main(String[] args) {
+		AdvanceCalculator adv=new AdvanceCalculator();
+		adv.sum(1,2);
+		adv.sum(1,2,3);
+		adv.sum(1,2,3,4);
+		adv.sub(2,3);
+		adv.div(4,3);
+	}
+
+}
