@@ -1,0 +1,52 @@
+import java.util.*;
+public class MyNavSet {
+	public void myNavMethod() {
+		 NavigableSet ns = new TreeSet();
+	        ns.add(0);
+	        ns.add(1);
+	        ns.add(2);
+	        ns.add(3);
+	        ns.add(4);
+	        ns.add(5);
+	        ns.add(6);
+	        System.out.println(ns);
+	        NavigableSet threeOrMore = ns.tailSet(3, true);
+	        System.out.println(threeOrMore);
+	        System.out.println(ns.lower(3));
+	        System.out.println(ns.floor(3));
+	        System.out.println(ns.higher(3));
+	        System.out.println(ns.ceiling(3));
+	        System.out.println(ns.pollFirst());
+	        System.out.println(ns);
+	        System.out.println(ns.pollLast());
+	        System.out.println(ns);
+	       
+	}
+}
+
+import java.util.HashSet;
+public class MyHashSet {
+	public void myHashSetMethod() {
+		HashSet<String> h = new HashSet<String>(); 
+	    h.add("India");
+	    h.add("Australia"); 
+	    h.add("Africa"); 
+	    h.add("India");
+	    System.out.println("List contains India or not:"+h.contains("India")); 
+	    System.out.println(h); 
+	    h.remove("Australia");
+	    System.out.println(h); 
+	    System.out.println(h.size()); 
+	}
+}
+
+
+import java.util.HashSet;
+public class MySet {
+	public static void main(String[] args) {
+		 MyHashSet hs=new MyHashSet();
+		 MyNavSet ns=new MyNavSet();
+		 hs.myHashSetMethod();
+		 ns.myNavMethod();
+	}
+}
