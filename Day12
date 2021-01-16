@@ -1,0 +1,68 @@
+import java.util.*; 
+	
+public class MyTreeMap {  
+	   
+	    static TreeMap tree_map; 
+      
+	    static void create() 
+	    { 
+	        tree_map = new TreeMap(); 
+	        System.out.println("TreeMap successfully"+ " created"); 
+	    } 
+	    static void insert() 
+	    {  
+	        tree_map.put(10, "Harish"); 
+	        tree_map.put(15, "Full"); 
+	        tree_map.put(20, "Creative"); 
+	        tree_map.put(25, "Full Creative"); 
+	        tree_map.put(30, "Full Talks"); 
+	        System.out.println("\nElements successfully"+ " inserted in the TreeMap"); 
+	    }
+	    static void search(int key) 
+	    { 
+	        System.out.println("\nIs key \""+ key + "\" present? "+ tree_map.containsKey(key)); 
+	    } 
+	    static void search(String value) 
+	    { 
+	    	System.out.println( "\nIs value \""+ value + "\" present? "+ tree_map.containsValue(value)); 
+	    } 
+	    static void display() 
+	    {  
+	        System.out.println("\nDisplaying the TreeMap:"); 
+	        System.out.println("TreeMap: " + tree_map); 
+	    } 
+	    public void MyTreeMapMethod(){
+	    	create();
+	    	insert(); 
+	    	search(50); 
+	    	search("Harish"); 
+	    	display(); 
+	}
+}
+
+import java.util.*;
+
+public class MyHashMap {
+	public void MyHashMapMethod(){
+		 HashMap hm=new HashMap();    
+	      hm.put(100,"Amit");    
+	      hm.put(101,"Vijay");    
+	      hm.put(102,"Rahul");   
+	      System.out.println(hm); 
+        System.out.println("Size of map is:- "+ hm.size()); 
+	      hm.replace(102, "Gaurav"); 
+	      hm.replace(101, "Vijay", "Ravi");  
+	      hm.replaceAll((k,v) -> "Ajay");   
+	}
+}
+
+public class MyMap {
+
+	public static void main(String[] args) {
+		MyHashMap mhm=new MyHashMap();
+		MyTreeMap mtm=new MyTreeMap();
+		mhm.MyHashMapMethod();
+		mtm.MyTreeMapMethod();
+	}
+
+}
