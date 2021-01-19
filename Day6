@@ -24,6 +24,6 @@ public class Iphone extends Phone {
 		ip.siri();
 		ip.call();
 		ip.music();
-		ip.message();
+		ip.message();;
 	}
 }
