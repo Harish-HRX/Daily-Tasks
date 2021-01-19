@@ -47,6 +47,6 @@ public class MySet {
 		 MyHashSet hs=new MyHashSet();
 		 MyNavSet ns=new MyNavSet();
 		 hs.myHashSetMethod();
-		 ns.myNavMethod();
+		 ns.myNavMethod();;
 	}
 }
