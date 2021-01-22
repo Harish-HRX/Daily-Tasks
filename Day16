@@ -1,0 +1,35 @@
+import java.io.IOException;
+
+public class MyExcetionHandling {
+	
+	 public void testing() throws IOException{  
+		    
+		 throw new IOException("device error");  
+     }  
+	
+	public static void main(String[] args) {
+		 try {
+			 
+			 int divideByZero = 5 / 0;
+			 try {
+				 System.out.println(1/0);
+			 }
+			 catch (ArrayIndexOutOfBoundsException e) {
+				 System.out.println("ArrayIndexOutOfBoundsException => " + e.getMessage());
+			 }
+			 
+			 MyExcetionHandling me=new MyExcetionHandling();
+			 me.testing();
+			 
+	     }
+		 catch (ArithmeticException e) {
+			 System.out.println("ArithmeticException => " + e.getMessage());
+		 }
+		 catch (Exception e) {
+		     System.out.println("Outter catch => " + e.getMessage());
+		  } 
+		  finally{
+		      System.out.println("This is the finally block");
+		  }
+	}
+}
