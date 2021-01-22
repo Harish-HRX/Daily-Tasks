@@ -1,0 +1,49 @@
+import java.util.*;
+
+public class Testing {
+
+	public static void main(String[] args) {
+		
+		//inner al
+		ArrayList<String> innerAl1=new ArrayList<String>();
+		innerAl1.add("Harish");
+		innerAl1.add("Ram");
+		
+		ArrayList<String> innerAl2=new ArrayList<String>();
+		innerAl2.add("full");
+		innerAl2.add("creative");
+		
+		ArrayList<String> innerAl3=new ArrayList<String>();
+		innerAl3.add("coimbatore");
+		innerAl3.add("chennai");
+		
+		ArrayList<String> innerAl4=new ArrayList<String>();
+		innerAl4.add("cat");
+		innerAl4.add("dog");
+		
+		//Inner HM
+		HashMap<String,ArrayList<String>> innerHm1=new HashMap<String,ArrayList<String>>();
+		innerHm1.put("one", innerAl1);
+		innerHm1.put("two", innerAl2);
+		
+		HashMap<String,ArrayList<String>> innerHm2=new HashMap<String,ArrayList<String>>();
+		innerHm2.put("three", innerAl3);
+		innerHm2.put("four", innerAl4);
+		
+		//outter Al
+		ArrayList<HashMap<String,ArrayList<String>>> outterAl=new ArrayList<HashMap<String,ArrayList<String>>>();
+		outterAl.add(innerHm1);
+		outterAl.add(innerHm2);
+		
+		//outter HM
+		//HashMap<String,ArrayList<HashMap<String,ArrayList<String>>>> outterHm =new HashMap<String,ArrayList<HashMap<String,ArrayList<String>>>>();
+		
+		HashMap<String,Object> outterHm=new HashMap<String,Object>();
+		
+		outterHm.put("1",outterAl);
+		
+		System.out.println(outterHm.toString());
+		
+	}
+
+}
