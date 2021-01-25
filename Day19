@@ -1,0 +1,431 @@
+import java.util.Scanner;
+import java.util.HashMap;
+import java.util.Scanner;
+
+public class BookUtil {
+	
+	static HashMap<String,Book> books=new HashMap<String,Book>();
+	
+	public void register(User user,Book book){
+		Scanner in=new Scanner(System.in);
+		Home hm =new Home();
+		Login lg=new Login();
+		System.out.println("Enter the Book Name to be added:");
+		String bname=in.next();
+		System.out.println("Enterthe Author name:");
+		String auth=in.next();
+		Book book2=new Book(bname,auth,bname.length());
+		books.put(bname,book);
+		System.out.println("Book is added sucessfully:)");
+		System.out.println("Want to\n1.Logout\n2.Get back to the menu");
+		int choice=in.nextInt();
+		switch(choice){
+		case 1:hm.menu(user);
+		break;
+		case 2:lg.signout();
+		break;
+		default:System.out.println("Wrong option!");	
+		}
+	}
+	
+	public void addBook(User user){
+		Scanner in=new Scanner(System.in);
+		Home hm =new Home();
+		Login lg=new Login();
+		System.out.println("Enter the Book Name to be added:");
+		String bname=in.next();
+		System.out.println("Enterthe Author name:");
+		String auth=in.next();
+		Book book=new Book(bname,auth,bname.length());
+		books.put(bname,book);
+		System.out.println("Book is added sucessfully:)");
+		System.out.println("Want to\n1.Logout\n2.Get back to the menu");
+		int choice=in.nextInt();
+		switch(choice){
+		case 1:hm.menu(user);
+		break;
+		case 2:lg.signout();
+		break;
+		default:System.out.println("Wrong option!");	
+		}
+	}
+	
+	public boolean removeBook(User user){
+		Scanner in=new Scanner(System.in);
+		Home hm =new Home();
+		Login lg=new Login();
+		System.out.println("Enter the Book Name to be removed:");
+		String bname=in.next();
+		System.out.println("Enterthe Author name:");
+		String auth=in.next();
+		if(BookUtil.books.remove(bname)==null) {
+			System.out.println("No such user found:(");
+			return false;
+		}
+		else {
+			System.out.println("Book has been removed successfully:)");
+			System.out.println("Want to\n1.Logout\n2.Get back to the menu");
+			int choice=in.nextInt();
+			switch(choice){
+			case 1:hm.menu(user);
+			break;
+			case 2:lg.signout();
+			break;
+			default:System.out.println("Wrong option!");	
+			}
+			return true;
+		}
+	}
+
+	public void getBook(User user){
+		Scanner in=new Scanner(System.in);
+		System.out.println("Enter the Book Name:");
+		String bname=in.next();
+		System.out.println("Enterthe Author name:");
+		String auth=in.next();
+		Book book=this.books.get(bname);
+		book.available=false;
+		books.put(bname,book);
+		System.out.println("Got book sucessfully:)");
+		Home hm =new Home();
+		Login lg=new Login();
+		System.out.println("Want to\n1.Logout\n2.Get back to the menu");
+		int choice=in.nextInt();
+		switch(choice){
+		case 1:hm.menu(user);
+		break;
+		case 2:lg.signout();
+		break;
+		default:System.out.println("Wrong option!");	
+		}
+	}
+
+	public void returnBook(User user){
+		Scanner in=new Scanner(System.in);
+		System.out.println("Enter the Book Name:");
+		String bname=in.next();
+		System.out.println("Enterthe Author name:");
+		String auth=in.next();
+		Book book=this.books.get(bname);
+		book.available=true;
+		books.put(bname,book);
+		System.out.println("Got returned sucessfully:)");
+		Home hm =new Home();
+		Login lg=new Login();
+		System.out.println("Want to\n1.Logout\n2.Get back to the menu");
+		int choice=in.nextInt();
+		switch(choice){
+		case 1:hm.menu(user);
+		break;
+		case 2:lg.signout();
+		break;
+		default:System.out.println("Wrong option!");
+		}
+	}
+
+	public boolean searchBook(){
+		Scanner in=new Scanner(System.in);
+		System.out.println("Enter the Book Name:");
+		String bname=in.next();
+		System.out.println("Enterthe Author name:");
+		String auth=in.next();
+		if(this.books.containsKey(bname)==true){
+			Book book=this.books.get(bname);
+			if(auth.equals(book.author)){
+				return true;
+			}
+			else {
+				return false;
+			}
+		}
+		else {
+			return false;
+		}
+	}
+
+	public void bookDetails(){
+		//System.out.println("\nIn bookDetails:)\n");
+		for (HashMap.Entry<String,Book> me : this.books.entrySet()) { 
+		     System.out.print("UserName :  "+me.getKey()+" Password : "+me.getValue()); 
+		}
+	}
+	
+}
+
+import java.util.*;
+
+public class UserUtil {
+	
+	static HashMap<String,User> users=new HashMap<String,User>();
+	
+	public void addUser(){
+		//System.out.println("\nIn adduser:)\n");
+		Scanner in=new Scanner(System.in);
+		System.out.println("Enter Your Name:");
+		String uname=in.next();
+		System.out.println("Enter Your Password:");
+		String pwd=in.next();
+		//System.out.println(">>>"+uname+">>>"+pwd);
+		UserUtil us=new UserUtil();
+		User user=new User(uname,pwd); 
+		UserUtil.users.put(uname,user);
+		//System.out.println("&&&&&&&"+UserUtil.users+"&&&&&&&");
+	    //us.hasUser(uname, pwd);
+		//in.close();
+	}
+	
+	public boolean removeUser(){
+	//	System.out.println("\nIn remove user:)\n");
+		Scanner in=new Scanner(System.in);
+		System.out.println("Enter the userame:");
+		String uname=in.nextLine();
+		in.close();
+		if(UserUtil.users.remove(uname)==null) {
+			System.out.println("No such user found:(");
+			return false;
+		}
+		else {
+			System.out.println("Removed successfully:)");
+			return true;
+		}
+	}
+	
+	public User findUser(String uname,String pwd) {
+	//	System.out.println("\nIn finduser:)\n");
+		if(hasUser(uname,pwd)) {
+		//	System.out.println("\nfind=True\n");
+			return UserUtil.users.get(uname);
+		}
+		else {
+		//	System.out.println("\nfind=False\n");
+			System.out.println("No such User Found");
+			return null;
+		}
+	}
+	
+	public boolean hasUser(String uname,String pwd) {
+		UserUtil us=new UserUtil();
+		//System.out.println("\n1In hasUser:)"+uname+"\n");
+	    //System.out.println("&&&&&&&"+this.users+"&&&&&&&");
+		//System.out.println("==========="+this.users.containsKey(uname));
+		if(this.users.containsKey(uname)==true){
+			//System.out.println("\n2In hasUser:)\n");
+			User user=this.users.get(uname);
+			if(pwd.equals(user.password)){
+				//System.out.println("\n3In hasUser:)\n");
+				return true;
+			}
+			else {
+				//System.out.println("\n4In hasUser:)\n");
+				return false;
+			}
+		}
+		else {
+		//	System.out.println("\n5In hasUser:)\n");
+			return false;
+		}
+	}
+	
+	public void showUser() {
+		System.out.println("\nIn showUser:)\n");
+		for (HashMap.Entry<String,User> me : this.users.entrySet()) { 
+		     System.out.print("UserName :  "+me.getKey()+" Password : "+me.getValue()); 
+		}
+	}
+	
+}
+
+
+import java.util.Scanner;
+
+public class Login {
+	
+	public User loginPage() {
+		//System.out.println("\nIn loginPage:)\n");
+		Scanner in=new Scanner(System.in);
+		User user=null;
+		System.out.println("*******************************************************************");
+		System.out.println("                      Library Management System");
+		System.out.println("*******************************************************************\n");
+		System.out.println("Enter an Option\n1.SignUp\n2.SignIn");
+		int choice=in.nextInt();
+		switch(choice){
+		case 1:user=signUp();
+		break;
+		case 2:user=signIn();
+		break;
+		default:System.out.println("Wrong Option!");
+		}
+		//in.close();
+		return user;
+	}
+	
+	public User signUp() {
+		//System.out.println("\nIn SignUp:)\n");
+		System.out.println("======================================================================");
+		System.out.println("                           Please SignUp");
+		System.out.println("======================================================================");
+		UserUtil us=new UserUtil();
+		us.addUser();
+		System.out.println("Thank you for signing up:)");
+		User user=signIn();
+		return user;
+	}
+	
+	public User signIn() {
+		//System.out.println("\nIn SignIn:)\n");
+		System.out.println("======================================================================");
+		System.out.println("                            Please SignIn");
+		System.out.println("======================================================================");
+		Scanner in=new Scanner(System.in);
+		UserUtil ut=new UserUtil();
+		System.out.println("Enter Your Name:");
+		String uname=in.next();
+		System.out.println("Enter Your Password:");
+		String pwd=in.next();
+		if(ut.hasUser(uname, pwd)){
+			//System.out.println("a>>>>>>>>>>>>>>>>>>");
+			return ut.findUser(uname,pwd);
+		}
+		else{
+			System.out.println("b>>>>>>>>>>>>>>>>>>");
+			System.out.println("UserName or Password does not exist");
+			System.out.println("1.SignIn again\n2.Create Account\n3.exit");
+			int choice=in.nextInt();
+			switch(choice){
+			case 1:signIn();
+			break;
+			case 2:signUp();
+			break;
+			case 3:System.out.println("Thanks for visiting");	
+			break;
+			default:System.out.println("Wrong Option!");	
+			}
+		}
+			return null;
+		
+	}
+	
+	public void signout(){
+		//System.out.println("\nIn Signout:)\n");
+		Login lg=new Login();
+		System.out.println("Thank You");
+	}
+	
+}
+
+public class Home {
+	
+	public void homePage() {
+		Login in=new Login();
+		Home home=new Home();
+		User user=in.loginPage();
+		menu(user);
+	}
+	
+	public void menu(User user){
+		System.out.print("Hello "+user.user);
+		if(user!=null){
+			//System.out.println("Suprraaa!!");
+			if(user.account.equals("librarian")){
+				//System.out.println("Suprraaaaaaaaaaaaa!!");
+				librarianAccount(user);
+			}
+			else {
+				guestAccount(user);
+			}
+		}
+		
+	}
+	
+	public void librarianAccount(User user){
+		Scanner in=new Scanner(System.in);
+		BookUtil bu=new BookUtil();
+		UserUtil ut=new UserUtil();
+		System.out.println(" what do you want to do today?\n");
+		System.out.println("1.Add a Book\n2.Remove a book\n3.Get A Book\n4.Return a book"
+				+"\n5.Search a book\n6.All Book details\n7.Add an user\n8.Remove an user");
+		int choice=in.nextInt();
+		switch(choice){
+		case 1:bu.addBook(user);
+		break;
+		case 2:bu.removeBook(user);
+		break;
+		case 3:bu.getBook(user);
+		break;
+		case 4:bu.returnBook(user);
+		break;
+		case 5:bu.searchBook();
+		break;
+		case 6:bu.bookDetails();
+		break;
+		case 7:ut.addUser();
+		break;
+		case 8:ut.removeUser();
+		break;
+		default:System.out.println("Wrong option!");	
+		}
+		//usecases :
+		//add remove edit search by both name auth
+		//register new user
+		//reserve
+		//in.close();
+	}
+	
+	public void guestAccount(User user) {
+		Scanner in=new Scanner(System.in);
+		BookUtil bu=new BookUtil();
+		System.out.print("What do you want to do?");
+		System.out.print("1.Get A Book\n2.Return a book\n3.Search a book");
+		int choice=in.nextInt();
+		switch(choice){
+		case 1:bu.getBook(user);
+		break;
+		case 2:bu.returnBook(user);
+		break;
+		case 3:bu.searchBook();
+		break;
+		default:System.out.println("Wrong option!");	
+		}
+	//	in.close();
+	}
+	
+}
+
+public class Book {
+	
+	String name,author;
+	int id;
+	boolean available=true;
+	User user;
+	
+	Book(String bname,String bauth,int bid){
+		this.name=bname;
+		this.author=bauth;
+		this.id=bid;
+	}
+	
+}
+
+public class User {
+	
+	String user;
+	String password;
+	String account;
+	
+	User(String uname,String pwd){
+		this.user=uname;
+		this.password=pwd;
+		this.account="librarian";
+	}
+	
+}
+
+public class Main {
+
+	public static void main(String[] args) {
+		Home home=new Home();
+		home.homePage();
+	}
+
+}
